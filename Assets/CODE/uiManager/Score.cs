@@ -7,13 +7,16 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {    [SerializeField] private Text scoreText;
      [SerializeField] private int score;
-     [Zenject.Inject] [SerializeField] private uiManager ui;
+     //[Zenject.Inject] [SerializeField] private uiManager ui;
+
+     bool gameOver;
 
 
     // Start is called before the first frame update
     void Start()
     {
        score = 0;
+       gameOver = false;
        InvokeRepeating("scoreUpdate", 1.0f ,0.5f); 
     }
 
@@ -22,12 +25,18 @@ public class Score : MonoBehaviour
     {  
       
       scoreText.text = "Score:" + score;
-      //score += 1;
+    
       
     }
-    /*void scoreUpdate(){
-        if (!gameOver){
+  void scoreUpdate(){
+
+      if (!gameOver){
         score += 1;
-        }
-}*/
+      }
+  }
+  public void gameIsOver(){
+    gameOver = true;
+   
+ }
+   
 }
